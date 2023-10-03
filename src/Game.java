@@ -1,9 +1,15 @@
 public class Game {
     public static void main(String[] args) {
-        Board b = new Board(8);
-        b.initialize();
+        Board board = new Board(8);
+        Player player1 = new Player('1');
+        Player player2 = new Player('2');
+        board.initialize();
+        while(!board.win){
+            drawMenu();
+            board.draw();
+        }
     }
-    public void drawMenu(){
+    public static void drawMenu(){
 
     }
 }
