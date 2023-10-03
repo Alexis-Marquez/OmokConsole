@@ -4,10 +4,7 @@ public class Game {
         Player player1 = new Player('1');
         Player player2 = new Player('2');
         board.initialize();
-        while(!board.win){
-            drawMenu();
             board.draw();
-        }
     }
     public static void drawMenu(){
 

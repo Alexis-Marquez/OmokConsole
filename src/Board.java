@@ -11,9 +11,9 @@ public class Board{
         for (int col = 0; col<BOARD_SIZE;col++) {
             for (int row = 0; row<BOARD_SIZE;row++) {
                 board[col][row] = '0';
-                System.out.print("|"+ row+"| ");
+                System.out.print("|"+ board[col][row]+"| ");
             }
-            System.out.println(++i);
+            System.out.println(i++);
         }
         for (int j = 1; j <= BOARD_SIZE; j++) {
             System.out.print("|"+j+"| ");
@@ -21,17 +21,20 @@ public class Board{
         System.out.println();
     }
     public void draw(){
+        System.out.println(placeStone(4,4,new Player('1')));
+        System.out.println(win);
         int i = 0;
         for (char[] col:board) {
             for (char row : col) {
                 System.out.print("|"+ row+"| ");
             }
-            System.out.println(++i);
+            System.out.println(i++);
         }
-        for (int j = 1; j <= BOARD_SIZE; j++) {
+        for (int j = 0; j < BOARD_SIZE; j++) {
             System.out.print("|"+j+"| ");
         }
         System.out.println();
+
     }
     public boolean placeStone(int x, int y, Player player){
         if(board[y][x]=='0') {
@@ -54,9 +57,9 @@ public class Board{
         search(-1,0,x,y,player);    //search left
     }
     private boolean search(int h, int v, int x, int y, Player player){
-        for (int i = x; i < x+5; i+=h) {
-            for (int j = y; j < y+5; j+=v) {
-                if(x>=BOARD_SIZE||y>=BOARD_SIZE||x<0||y<0){
+        for (int i = x; i < x+(5)*h; i+=h) {
+            for (int j = y; j < y+(5)*v; j+=v) {
+                if(i>=BOARD_SIZE||j>=BOARD_SIZE||i<0||j<0){
                     return false;
                 }
                     if(board[i][j]!=player.symbol){
