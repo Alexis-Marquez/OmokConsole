@@ -21,8 +21,6 @@ public class Board{
         System.out.println();
     }
     public void draw(){
-        System.out.println(placeStone(4,4,new Player('1')));
-        System.out.println(win);
         int i = 0;
         for (char[] col:board) {
             for (char row : col) {
@@ -47,24 +45,92 @@ public class Board{
         }
     }
     private boolean checkWin(int x, int y, Player player){
-        return search(-1,1,x, y, player)|| //search lower-left diagonal
-        search(1,1,x, y, player)||  //search lower-right diagonal
-        search(1,-1,x, y, player)|| //search upper-right diagonal
-        search(-1,-1,x, y, player)||//search upper-left diagonal
-        search(0,1,x,y,player)||    //search up
-        search(0,-1,x,y,player)||   //search down
-        search(1,0,x,y,player)||    //search right
-        search(-1,0,x,y,player);    //search left
+        return searchHorizontal(x,y,player)||searchVertical(x,y,player)||searchDiagonalOne(x,y,player)||searchDiagonalTwo(x,y,player);
     }
-    private boolean search(int h, int v, int x, int y, Player player){
-        for (int i = x; i < x+(5)*h; i+=h) {
-            for (int j = y; j < y+(5)*v; j+=v) {
-                if(i>=BOARD_SIZE||j>=BOARD_SIZE||i<0||j<0){
-                    return false;
-                }
-                    if(board[i][j]!=player.symbol){
-                        return false;
-                    }
+    private boolean searchHorizontal(int x, int y, Player player){
+        int l, r, count;
+        l = y-1;
+        r = y+1;
+        count = 1;
+        while(count<5){
+            if(l>=0&&board[x][l]==player.symbol){
+                count++;
+                l--;
+            }
+            else if(r< board.length&&board[x][r]==player.symbol){
+                count++;
+                r++;
+            }
+            else{
+                return false;
+            }
+        }
+        return true;
+    }
+    private boolean searchVertical(int x, int y, Player player){
+        int l, r, count;
+        l = x-1;
+        r = x+1;
+        count = 1;
+        while(count<5){
+            if(l>=0&&board[l][y]==player.symbol){
+                count++;
+                l--;
+            }
+            else if(r< board.length&&board[r][y]==player.symbol){
+                count++;
+                r++;
+            }
+            else{
+                return false;
+            }
+        }
+        return true;
+    }
+    private boolean searchDiagonalOne(int x, int y, Player player){
+        int l, r, count, u, d;
+        l = x-1;
+        r = x+1;
+        u = y-1;
+        d = y+1;
+        count = 1;
+        while(count<5){
+            if(l>=0&&u>=0&&board[l][u]==player.symbol){
+                count++;
+                l--;
+                u--;
+            }
+            else if(r< board.length&&d<= board.length&&board[r][d]==player.symbol){
+                count++;
+                r++;
+                d++;
+            }
+            else{
+                return false;
+            }
+        }
+        return true;
+    }
+    private boolean searchDiagonalTwo(int x, int y, Player player){
+        int l, r, count, u, d;
+        l = x-1;
+        r = x+1;
+        u = y-1;
+        d = y+1;
+        count = 1;
+        while(count<5){
+            if(l>=0&&d< board.length&&board[l][d]==player.symbol){
+                count++;
+                l--;
+                d++;
+            }
+            else if(r< board.length&&u>=0&&board[r][u]==player.symbol){
+                count++;
+                r++;
+                u--;
+            }
+            else{
+                return false;
             }
         }
         return true;
