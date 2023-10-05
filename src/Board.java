@@ -2,6 +2,10 @@ public class Board{
     private int BOARD_SIZE;
     private char[][] board;
     boolean win = false;
+
+    public int getBOARD_SIZE(){
+        return BOARD_SIZE;
+    }
     public Board(int boardSize) {
         BOARD_SIZE = boardSize;
     }
@@ -28,50 +32,30 @@ public class Board{
         System.out.println();
 
     }
-    public boolean placeStone(int x, int y, Player player){
+    public boolean placeStone(int y, int x, char symbol){
         if(board[y][x]=='0') {
-            board[y][x] = player.symbol;
-            win = checkWin(x,y,player);
+            board[y][x] = symbol;
+            win = checkWin(y,x, symbol);
             return true;
         }
         else{
             return false;
         }
     }
-    private boolean checkWin(int x, int y, Player player){
-        return searchHorizontal(x,y,player)||searchVertical(x,y,player)||searchDiagonalOne(x,y,player)||searchDiagonalTwo(x,y,player);
+    private boolean checkWin(int y, int x, char symbol){
+        return searchHorizontal(y,x,symbol)||searchVertical(y,x,symbol)||searchDiagonalOne(y,x,symbol)||searchDiagonalTwo(y,x,symbol);
     }
-    private boolean searchHorizontal(int x, int y, Player player){
-        int l, r, count;
-        l = y-1;
-        r = y+1;
-        count = 1;
-        while(count<5){
-            if(l>=0&&board[x][l]==player.symbol){
-                count++;
-                l--;
-            }
-            else if(r< board.length&&board[x][r]==player.symbol){
-                count++;
-                r++;
-            }
-            else{
-                return false;
-            }
-        }
-        return true;
-    }
-    private boolean searchVertical(int x, int y, Player player){
+    private boolean searchHorizontal(int y, int x, char symbol){
         int l, r, count;
         l = x-1;
         r = x+1;
         count = 1;
         while(count<5){
-            if(l>=0&&board[l][y]==player.symbol){
+            if(l>=0&&board[y][l]==symbol){
                 count++;
                 l--;
             }
-            else if(r< board.length&&board[r][y]==player.symbol){
+            else if(r< board.length&&board[y][r]==symbol){
                 count++;
                 r++;
             }
@@ -79,9 +63,31 @@ public class Board{
                 return false;
             }
         }
+        System.out.println("Search horizontal");
         return true;
     }
-    private boolean searchDiagonalOne(int x, int y, Player player){
+    private boolean searchVertical(int y, int x, char symbol){
+        int u, d, count;
+        u = y-1;
+        d = y+1;
+        count = 1;
+        while(count<5){
+            if(u>=0&&board[u][x]==symbol){
+                count++;
+                u--;
+            }
+            else if(d< board.length&&board[d][x]==symbol){
+                count++;
+                d++;
+            }
+            else{
+                return false;
+            }
+        }
+        System.out.println("Search vertical");
+        return true;
+    }
+    private boolean searchDiagonalOne(int y, int x, char symbol){
         int l, r, count, u, d;
         l = x-1;
         r = x+1;
@@ -89,12 +95,12 @@ public class Board{
         d = y+1;
         count = 1;
         while(count<5){
-            if(l>=0&&u>=0&&board[l][u]==player.symbol){
+            if(l>=0&&u>=0 && board[u][l]==symbol){
                 count++;
                 l--;
                 u--;
             }
-            else if(r< board.length&&d<= board.length&&board[r][d]==player.symbol){
+            else if(r< board.length && d< board.length&&board[d][r]==symbol){
                 count++;
                 r++;
                 d++;
@@ -103,9 +109,10 @@ public class Board{
                 return false;
             }
         }
+        System.out.println("diagonal one");
         return true;
     }
-    private boolean searchDiagonalTwo(int x, int y, Player player){
+    private boolean searchDiagonalTwo(int y, int x, char symbol){
         int l, r, count, u, d;
         l = x-1;
         r = x+1;
@@ -113,12 +120,12 @@ public class Board{
         d = y+1;
         count = 1;
         while(count<5){
-            if(l>=0&&d< board.length&&board[l][d]==player.symbol){
+            if(l>=0&&d< board.length&&board[d][l]==symbol){
                 count++;
                 l--;
                 d++;
             }
-            else if(r< board.length&&u>=0&&board[r][u]==player.symbol){
+            else if(r< board.length&&u>=0&&board[u][r]==symbol){
                 count++;
                 r++;
                 u--;
@@ -127,6 +134,7 @@ public class Board{
                 return false;
             }
         }
+        System.out.println("diagonal two");
         return true;
     }
 }
