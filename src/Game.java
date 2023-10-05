@@ -1,22 +1,28 @@
 public class Game {
     public static void main(String[] args) {
-        Board board = new Board(8);
-        Player player1 = new HumanPlayer('/', board);
-        Player player2 = new CpuPlayer('*', board);
-        board.initialize();
-        for (int i = 0; i < 40; i++) {
-            player2.pickPlace();
-            System.out.println(i);
-            if(board.win){
-                System.out.println("Congrats!");
-                break;
-            }
-        }
         System.out.println();
-        board.draw();
+        MenuUi menu = new MenuUi();
+        menu.drawMenu();
+        Board board = new Board(menu.getBoardSize());
+        Player player1 = new HumanPlayer('1', board);
+        Player player2 = new CpuPlayer('2', board);
+        board.initialize();
+        menu.setBoard(board);
+        menu.draw();
+        while(!board.win){
 
+        }
     }
-    public static void drawMenu(){
 
-    }
 }
+
+/*  TODO:
+Files:
+* 1. MenuUi:
+*    -Multiplayer menu
+     -Play Menu (player selects spot)
+     -Quit option
+     -Player selects symbol
+  2. CpuPlayer:
+     -Smart strategy
+     **/
