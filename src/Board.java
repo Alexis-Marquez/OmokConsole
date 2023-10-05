@@ -7,18 +7,12 @@ public class Board{
     }
     public void initialize(){
         board = new char[BOARD_SIZE][BOARD_SIZE];
-        int i = 0;
         for (int col = 0; col<BOARD_SIZE;col++) {
             for (int row = 0; row<BOARD_SIZE;row++) {
                 board[col][row] = '0';
-                System.out.print("|"+ board[col][row]+"| ");
             }
-            System.out.println(i++);
         }
-        for (int j = 1; j <= BOARD_SIZE; j++) {
-            System.out.print("|"+j+"| ");
-        }
-        System.out.println();
+        this.draw();
     }
     public void draw(){
         int i = 0;
