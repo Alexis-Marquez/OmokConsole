@@ -16,13 +16,13 @@ public class Game {
 
 }
 
-/*  TODO:
-Files:
-* 1. MenuUi:
-*    -Multiplayer menu
-     -Play Menu (player selects spot)
-     -Quit option
-     -Player selects symbol
-  2. CpuPlayer:
-     -Smart strategy
-     **/
+//  TODO:
+// Files:
+// * 1. MenuUi:
+// *    -Multiplayer menu
+//      -Play Menu (player selects spot)
+//      -Quit option
+//      -Player selects symbol
+//   2. CpuPlayer:
+//      -Smart strategy
+//      *

@@ -41,6 +41,30 @@ public class MenuUi {
         }while(1==1);
     }
     public void drawOptions(int input){
+
+
+        /*public void drawOptions(int input) {
+        Scanner in = new Scanner(System.in);
+        boolean valid = false;
+        if (input == 1) {
+            this.numberOfPlayers = 1;
+        } else if (input == 2) {
+            this.numberOfPlayers = 2;
+        }
+
+        System.out.println("Enter board size between 1 and 40: ");
+        int opt = in.nextInt();
+        while (!valid) {
+            if (opt > 0 && opt < 40) {
+                this.boardSize = opt;
+                valid = true;
+            } else {
+                opt = in.nextInt();
+                System.out.println("Enter board size between 1 and 40: ");
+            }
+        }
+
+        * */
         Scanner in = new Scanner(System.in);
         boolean valid = false;
         if(input==1){
@@ -90,3 +114,4 @@ public class MenuUi {
         System.out.println();
     }
 }
+
