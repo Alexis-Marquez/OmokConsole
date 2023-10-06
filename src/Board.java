@@ -123,4 +123,8 @@ public class Board{
         }
         return true;
     }
+
+    public boolean isWin() {
+        return win;
+    }
 }

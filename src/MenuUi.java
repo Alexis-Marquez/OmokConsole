@@ -119,7 +119,74 @@ public class MenuUi {
         }
         System.out.println();
     }
+
+    // new :)
+    // what do you call a fish wearing a bowtie? ... sofishticated ;3
+    public void playGame() {
+        board.initialize();
+        int currentPlayer = 1;
+
+        while (!board.isWin()) {
+            draw();
+            System.out.println("it's player " + currentPlayer + "'s turn.");
+            System.out.print("Enter X coordinate please (0-" + (board.getBOARD_SIZE() - 1) + "): ");
+            int x = getInputCoordinate();
+            System.out.print("Enter Y coordinate please (0-" + (board.getBOARD_SIZE() - 1) + "): ");
+            int y = getInputCoordinate();
+            if (board.placeStone(x, y, currentPlayer)) {
+                if (currentPlayer == 1) {
+                    currentPlayer = 2;
+                } else {
+                    currentPlayer = 1;
+                }
+            } else {
+                System.out.println("Invalid move. Try again.");
+            }
+        }
+        draw();
+        System.out.println("Player " + currentPlayer + " wins!");
+    }
+
+    private int selectSymbol(int playerNumber) {
+        Scanner input = new Scanner(System.in);
+        int symbol;
+        System.out.println("Player " + playerNumber + ", choose your symbol (1 or 2): ");
+        while (true) {
+            symbol = input.nextInt();
+            if (symbol == 1 || symbol == 2) {
+                return symbol;
+            }
+            else{
+                System.out.println("Invalid choice. Please select 1 or 2.");
+            }
+        }
+    }
+
+
+
+    private int getInputCoordinate() {
+        Scanner input = new Scanner(System.in);
+        int coordinate;
+        do {
+            System.out.print("Please enter a coordinate (0-" + (board.getBOARD_SIZE() - 1) + ") or -1 to exit. ");
+            coordinate = input.nextInt();
+
+            if (coordinate == -1) {
+                System.exit(0);
+            }
+
+            if (coordinate >= 0 && coordinate < board.getBOARD_SIZE()) {
+                return coordinate;
+            } else {
+                System.out.println("Please enter a valid coordinate.");
+            }
+        } while (true);
+    }
+
 }
+
+
+
 
 
 
