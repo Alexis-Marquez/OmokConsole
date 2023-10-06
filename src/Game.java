@@ -26,10 +26,12 @@ public class Game {
             counter++;
             if(board.isWin()){
                 System.out.println("Player 1 has won!");
+                menu.draw();
                 break;
             }
             if(counter>=board.getBOARD_SIZE()*board.getBOARD_SIZE()){
                 System.out.println("Tied game");
+                menu.draw();
                 break;
             }
             menu.draw();
@@ -37,10 +39,12 @@ public class Game {
             counter++;
             if(board.isWin()){
                 System.out.println("Player 2 has won!");
+                menu.draw();
                 break;
             }
             if(counter>=board.getBOARD_SIZE()*board.getBOARD_SIZE()){
                 System.out.println("Tied game");
+                menu.draw();
                 break;
             }
             menu.draw();
@@ -51,13 +55,18 @@ public class Game {
         if(player.pickPlace()){
             return;
         }
+        boolean valid=false;
+        while(!valid) {
             int[] play = menu.getInputCoordinate();
             int x = play[0];
             int y = play[1];
-            System.out.println(x+", "+y);
-            if(!board.placeStone(x,y, player.symbol)){
+            System.out.println(x + ", " + y);
+            if (!board.placeStone(x, y, player.symbol)) {
                 System.out.println("Try again");
-                play(player, board, menu);
+            }
+            else{
+                valid = true;
+            }
         }
     }
 }

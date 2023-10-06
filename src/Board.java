@@ -53,7 +53,8 @@ public class Board{
                 return false;
             }
         }
-        System.out.println("Search horizontal");
+
+        System.out.println("Winning move: l "+(l+1)+", r "+(r-1)+". Horizontal");
         return true;
     }
     private boolean searchVertical(int y, int x, char symbol){
@@ -74,7 +75,7 @@ public class Board{
                 return false;
             }
         }
-        System.out.println("Search vertical");
+        System.out.println("Winning move: u "+(u+1)+", d "+(d-1)+". vertical");
         return true;
     }
     private boolean searchDiagonalOne(int y, int x, char symbol){
@@ -99,7 +100,7 @@ public class Board{
                 return false;
             }
         }
-        System.out.println("diagonal one");
+        System.out.println("Winning move: l "+(l+1)+", u "+(u+1)+", d "+(d-1)+", r "+(r-1)+". Diagonally");
         return true;
     }
     private boolean searchDiagonalTwo(int y, int x, char symbol){
@@ -124,7 +125,7 @@ public class Board{
                 return false;
             }
         }
-        System.out.println("diagonal two");
+        System.out.println("Winning move: r "+(r-1)+", u "+(u+1)+", l "+(l+1)+", d "+(d-1)+". Diagonally");
         return true;
     }
 
