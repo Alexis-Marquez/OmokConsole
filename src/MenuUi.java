@@ -51,6 +51,11 @@ public class MenuUi {
         } else if (input == 2) {
             this.numberOfPlayers = 2;
         }
+        else {
+            System.out.println("Invalid option. Please choose 1 or 2.");
+            drawMenu();
+            return;
+        }
 
         System.out.println("Enter board size between 1 and 40: ");
         int opt = in.nextInt();
@@ -63,6 +68,7 @@ public class MenuUi {
                 System.out.println("Enter board size between 1 and 40: ");
             }
         }
+
 
         * */
         Scanner in = new Scanner(System.in);
@@ -114,4 +120,6 @@ public class MenuUi {
         System.out.println();
     }
 }
+
+
 
