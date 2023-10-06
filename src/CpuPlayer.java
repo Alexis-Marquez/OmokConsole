@@ -1,7 +1,6 @@
 import java.util.Random;
 
 public class CpuPlayer extends Player{
-        char symbol;
         private Board board;
         public CpuPlayer(){
             this.symbol = '1';
@@ -17,7 +16,7 @@ public class CpuPlayer extends Player{
         int randX = rand.nextInt(upperbound);
         int randY = rand.nextInt(upperbound);
         System.out.println(randY+", "+randX);
-        if(board.placeStone(randY, randX, this.symbol)){
+        if(board.placeStone(randX, randY, this.symbol)){
             return true;
         }
         else{
